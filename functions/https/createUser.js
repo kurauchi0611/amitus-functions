@@ -12,13 +12,16 @@ exports.createUser = async user => {
     .then(async userRecord => {
       console.log(userRecord);
       await db.collection('users').doc(userRecord.uid).set({
-        name: userRecord.displayName,
-        email: userRecord.email,
         createdAt: FieldValue.serverTimestamp(),
-        updatedAt: null,
-        language: {},
+        email: userRecord.email,
+        displayName: userRecord.displayName,
+        follow:0,
+        follower:0,
         introduction: "",
-        photoURL: null
+        language: [],
+        photoURL: null,
+        rating:1,
+        updatedAt: null,
       }).then(() => {
         console.log("createuserSuccess");
         res = true;
