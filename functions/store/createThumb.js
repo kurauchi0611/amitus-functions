@@ -11,7 +11,11 @@ exports.createThumb = async (data, params) => {
     }`;
   const tempFilePath = path.join(os.tmpdir(), uploadName);
   const filePath = nameSplit[0].split("https://firebasestorage.googleapis.com/v0/b/amitus-99097/o/talkImages%2F")
+  if (typeof filePath[1] === "undefined") {
+    return true
+  }
   await talkStorage.file(`talkImages/${filePath[1]}`).download({ destination: tempFilePath });
+  console.log(filePath);
   await spawn('convert', [tempFilePath, '-thumbnail', '250x250>', tempFilePath])
   const thumbFileName = `thumb_${uploadName}`;
   await talkStorage.upload(`/tmp/${uploadName}`, { destination: `talkImages/${thumbFileName}` });
