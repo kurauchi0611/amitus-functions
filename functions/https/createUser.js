@@ -15,12 +15,12 @@ exports.createUser = async user => {
         createdAt: FieldValue.serverTimestamp(),
         email: userRecord.email,
         displayName: userRecord.displayName,
-        follow:0,
-        follower:0,
+        follow: 0,
+        follower: 0,
         introduction: "",
         language: [],
         photoURL: null,
-        rating:1,
+        rating: 1,
         updatedAt: null,
       }).then(() => {
         console.log("createuserSuccess");
